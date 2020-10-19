@@ -4,49 +4,12 @@
       <h1>{{ title }}</h1>
     </div>
   </div>
-    <hr />
-    <div class="row">
-      <div class="col-xs-12">
-        <form class="form-row">
-          <div class="form-group col-md-2">
-            <label for="name" class="sr-only">Name</label>
-            <input
-              type="text"
-              name="name"
-              id="name"
-              class="form-control"
-              placeholder="Name"
-              [(ngModel)]="name"
-            />
-          </div>
-          <div class="form-group col-md-2">
-            <label for="surname" class="sr-only">Surname</label>
-            <input
-              type="text"
-              name="surname"
-              id="surname"
-              class="form-control"
-              placeholder="Surname"
-              [(ngModel)]="surname"
-            />
-          </div>
-          <div class="col">
-            <button
-              type="submit"
-              class="btn btn-primary"
-              (click)="onAddPerson()"
-            >
-              Add
-            </button>
-          </div>
-        </form>
-        <hr />
-        <app-person-component
-          *ngFor="let human of persons; let i = index"
-          [person]="human"
-          [index]="i"
-        ></app-person-component>
-      </div>
-    </div>
-  </div>
-
+  <hr />
+  <app-form (createdPerson)="onPersonAdded($event)"></app-form>
+  <hr />
+  <app-person-component
+    *ngFor="let human of persons; let i = index"
+    [person]="human"
+    [index]="i"
+  ></app-person-component>
+</div>
