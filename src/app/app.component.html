@@ -5,11 +5,11 @@
     </div>
   </div>
   <hr />
-  <app-form (createdPerson)="onPersonAdded($event)"></app-form>
+  <app-form ></app-form>
   <hr />
   <app-person-component
-    *ngFor="let human of persons; let i = index"
-    [person]="human"
+    *ngFor="let person of persons; let i = index"
+    [person]="person"
     [index]="i"
   ></app-person-component>
 </div>

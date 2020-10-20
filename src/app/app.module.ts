@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { PersonComponentComponent } from './person-component/person-component.component';
 import { FormComponent } from './form/form.component';
 import { LogginService } from './class/LogginService.service';
+import { PersonsServices } from './class/persons.service';
 
 
 @NgModule({
@@ -18,7 +19,7 @@ import { LogginService } from './class/LogginService.service';
   imports: [
     BrowserModule, FormsModule
   ],
-  providers: [LogginService],
+  providers: [LogginService, PersonsServices],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

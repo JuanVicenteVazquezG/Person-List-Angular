@@ -1,24 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Person } from './class/person.model';
 import { LogginService } from './class/LogginService.service';
+import { PersonsServices } from './class/persons.service';
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  providers: [LogginService]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   public title: string;
   public persons: Array<Person>;
 
-  constructor(private LoggedService: LogginService) {
+  constructor(private LoggedService: LogginService,
+              private personsService: PersonsServices) {
     this.title = 'Angular Persons List Practice';
-    this.persons = [new Person({ name: 'Juan', surname: 'Vazquez Lopez' }), new Person({ name: 'Laura', surname: 'Perez' })];
   }
 
-  onPersonAdded(person: Person): void {
-    this.persons.push(person);
-    this.LoggedService.sendMessageToConsole(` ${person.human.name} was added to the array`);
+  ngOnInit(): void {
+    this.persons = this.personsService.persons;
   }
+
+
 
 }
