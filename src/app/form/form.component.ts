@@ -7,22 +7,22 @@ import { Person } from '../class/person.model';
 })
 
 export class FormComponent {
-  public name: string;
-  public surname: string;
+  // public name: string;
+  // public surname: string;
   @Output() createdPerson: EventEmitter<Person>;
 
   constructor() {
     this.createdPerson = new EventEmitter<Person>();
   }
 
-  onAddPerson(): void {
-    if (this.name.trim() === '') { return; }
-    if (this.surname.trim() === '') { return; }
-    const person: Person = new Person({ name: this.name, surname: this.surname });
-
+  onAddPerson(name: HTMLInputElement, surname: HTMLInputElement): void {
+    if (name.value.trim() === '') { return; }
+    if (surname.value.trim() === '') { return; }
+    const person: Person = new Person({ name: name.value, surname: surname.value });
+    console.log(name);
     this.createdPerson.emit(person);
-    this.name = '';
-    this.surname = '';
+    name.value = '';
+    surname.value = '';
   }
 
 }
