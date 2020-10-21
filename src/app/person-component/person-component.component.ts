@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Person } from '../class/person.model';
+import { PersonsServices } from '../class/persons.service';
 
 @Component({
   selector: 'app-person-component',
@@ -10,6 +11,16 @@ export class PersonComponentComponent {
   @Input() person: Person;
   @Input() index: number;
 
-  constructor() { }
+  constructor(private personsServices: PersonsServices) {
+  this.personsServices.greet.subscribe(this.showAlert);
+  }
+
+  greetingEmit(): void{
+    this.personsServices.greet.emit (this.index);
+  }
+
+  showAlert(index: number): void{
+    alert(`The index is ${index}`);
+  }
 
 }
