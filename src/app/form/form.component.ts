@@ -8,25 +8,25 @@ import { PersonsServices } from '../class/persons.service';
   templateUrl: './form.component.html',
 })
 export class FormComponent {
-  @ViewChild('name') name: ElementRef;
-  @ViewChild('surname') surname: ElementRef;
+  public name: string;
+  public surname: string;
 
   constructor(private logginService: LogginService,
               private personsServices: PersonsServices) {
   }
 
   onAddPerson(): void {
-    if (this.name.nativeElement.value.trim() === '') { return; }
-    if (this.surname.nativeElement.value.trim() === '') { return; }
+    console.log(this.name, ' ' , this.surname);
+    if (this.name.trim() === '') { return; }
+    if (this.surname.trim() === '') { return; }
     const person: Person = new Person(
       {
-        name: this.name.nativeElement.value,
-        surname: this.surname.nativeElement.value
+        name: this.name,
+        surname: this.surname
       });
-    console.log(person);
     this.personsServices.addPerson(person);
-    this.name.nativeElement.value = '';
-    this.surname.nativeElement.value = '';
+    this.name = '';
+    this.surname = '';
   }
 
 }

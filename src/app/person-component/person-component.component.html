@@ -1,14 +1,4 @@
-<div class="row">
-  <div class="col-xs-12">
-    <div>
-      {{index}}.- {{person.human.name}} {{person.human.surname}}
-        <button
-        type="submit"
-        class="btn btn-info"
-        (click)="greetingEmit()"
-        >
-      Edit
-        </button>
-    </div>
-  </div>
+<div class="item">
+  <input type="checkbox" (click)="greetingEmit()" />
+  <p>{{ index }}.- {{ person.human.name }} {{ person.human.surname }}</p>
 </div>
