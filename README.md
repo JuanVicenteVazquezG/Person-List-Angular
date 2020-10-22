@@ -1,6 +1,7 @@
 # PersonsList
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.7.
+Small Angular SPA, to show the most basic concepts such as "Two ways-binding", "Property-binding", "Event-binding", use of directives * ng-if * ng-for, "Event-binding between components" , as well as "Local references", "View-child" and the use of services.
+
 
 ## Development server
 
