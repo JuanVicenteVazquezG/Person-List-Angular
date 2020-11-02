@@ -1,0 +1,11 @@
+<div class="box">
+  <app-person-component
+    *ngFor="let person of persons; let i = index"
+    [person]="person"
+    [index]="i"
+  ></app-person-component>
+</div>
+
+<div class="box">
+  <app-form></app-form>
+</div>

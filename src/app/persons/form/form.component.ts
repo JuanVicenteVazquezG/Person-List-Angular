@@ -1,7 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { Person } from '../class/person.model';
-import { LogginService } from '../class/LogginService.service';
-import { PersonsServices } from '../class/persons.service';
+import { Person } from '../../class/person.model';
+import { LogginService } from '../../class/LogginService.service';
+import { PersonsServices } from '../../class/persons.service';
 
 @Component({
   selector: 'app-form',
