@@ -1,22 +1,35 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Person } from '../../class/person.model';
-import { LogginService } from '../../class/LogginService.service';
 import { PersonsServices } from '../../class/persons.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
 })
-export class FormComponent {
+export class FormComponent implements OnInit {
   public name: string;
   public surname: string;
+  public index: number;
 
-  constructor(private logginService: LogginService,
-              private personsServices: PersonsServices) {
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private personsServices: PersonsServices
+  ) {
   }
 
-  onAddPerson(): void {
-    console.log(this.name, ' ' , this.surname);
+  ngOnInit() {
+    this.index = this.route.snapshot.params.id;
+    if (this.index) {
+      const person: Person = this.personsServices.findPerson(this.index);
+      this.name = person.human.name;
+      this.surname = person.human.surname;
+    }
+  }
+
+  onSavePerson(): void {
+    console.log(this.name, ' ', this.surname);
     if (this.name.trim() === '') { return; }
     if (this.surname.trim() === '') { return; }
     const person: Person = new Person(
@@ -24,9 +37,14 @@ export class FormComponent {
         name: this.name,
         surname: this.surname
       });
-    this.personsServices.addPerson(person);
+    if (this.index) {
+      this.personsServices.modifyPerson(this.index, person);
+    }
+    else { this.personsServices.addPerson(person); }
+
     this.name = '';
     this.surname = '';
+    this.router.navigate(['']);
   }
 
 }

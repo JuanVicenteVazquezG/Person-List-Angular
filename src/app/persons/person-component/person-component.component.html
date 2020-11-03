@@ -1,4 +1,9 @@
 <div class="item">
-  <input type="checkbox" (click)="greetingEmit()" />
-  <p>{{ index }}.- {{ person.human.name }} {{ person.human.surname }}</p>
+  <ul>
+    <li>
+      <a [routerLink]="['/persons', index]">
+        <p>{{ person.human.name }} {{ person.human.surname }}</p>
+      </a>
+    </li>
+  </ul>
 </div>
