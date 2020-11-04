@@ -11,6 +11,7 @@ export class FormComponent implements OnInit {
   public name: string;
   public surname: string;
   public index: number;
+  public editMode: number;
 
   constructor(
     private router: Router,
@@ -20,7 +21,8 @@ export class FormComponent implements OnInit {
 
   ngOnInit() {
     this.index = this.route.snapshot.params.id;
-    if (this.index) {
+    this.editMode = this.route.snapshot.params.queryParams.editMode;
+    if (this.editMode !== null && this.editMode === 1) {
       const person: Person = this.personsServices.findPerson(this.index);
       this.name = person.human.name;
       this.surname = person.human.surname;
@@ -39,7 +41,7 @@ export class FormComponent implements OnInit {
       name: this.name,
       surname: this.surname,
     });
-    if (this.index) {
+    if (this.editMode !== null && this.editMode === 1) {
       this.personsServices.modifyPerson(this.index, person);
     } else {
       this.personsServices.addPerson(person);
