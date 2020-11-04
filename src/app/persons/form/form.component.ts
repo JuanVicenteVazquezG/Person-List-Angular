@@ -16,8 +16,7 @@ export class FormComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private personsServices: PersonsServices
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
     this.index = this.route.snapshot.params.id;
@@ -30,21 +29,31 @@ export class FormComponent implements OnInit {
 
   onSavePerson(): void {
     console.log(this.name, ' ', this.surname);
-    if (this.name.trim() === '') { return; }
-    if (this.surname.trim() === '') { return; }
-    const person: Person = new Person(
-      {
-        name: this.name,
-        surname: this.surname
-      });
+    if (this.name.trim() === '') {
+      return;
+    }
+    if (this.surname.trim() === '') {
+      return;
+    }
+    const person: Person = new Person({
+      name: this.name,
+      surname: this.surname,
+    });
     if (this.index) {
       this.personsServices.modifyPerson(this.index, person);
+    } else {
+      this.personsServices.addPerson(person);
     }
-    else { this.personsServices.addPerson(person); }
 
     this.name = '';
     this.surname = '';
-    this.router.navigate(['']);
+    this.router.navigate(['persons']);
   }
 
+  deletePerson(): void {
+    if (this.index != null) {
+      this.personsServices.deletePerson(this.index);
+    }
+    this.router.navigate(['persons']);
+  }
 }
