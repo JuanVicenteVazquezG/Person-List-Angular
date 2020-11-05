@@ -1,18 +1,24 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ErrorComponent } from './error/error.component';
 import { FormComponent } from './persons/form/form.component';
 import { PersonsComponent } from './persons/persons.component';
 
 const routes: Routes = [
   { path: '', component: PersonsComponent },
-  { path: 'persons', component: PersonsComponent },
-  { path: 'persons/add', component: FormComponent },
-  { path: 'persons/:id', component: FormComponent },
+  {
+    path: 'persons',
+    component: PersonsComponent,
+    children: [
+      { path: 'add', component: FormComponent },
+      { path: ':id', component: FormComponent },
+    ],
+  },
+  { path: '**', component: ErrorComponent}
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-
-export class AppRoutingModule { }
+export class AppRoutingModule {}

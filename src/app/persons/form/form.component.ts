@@ -21,7 +21,7 @@ export class FormComponent implements OnInit {
 
   ngOnInit() {
     this.index = this.route.snapshot.params.id;
-    this.editMode = this.route.snapshot.params.queryParams.editMode;
+    this.editMode = +this.route.snapshot.queryParams.editMode;
     if (this.editMode !== null && this.editMode === 1) {
       const person: Person = this.personsServices.findPerson(this.index);
       this.name = person.human.name;

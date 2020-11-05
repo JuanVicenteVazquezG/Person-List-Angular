@@ -10,6 +10,7 @@ import { FormComponent } from './persons/form/form.component';
 import { LogginService } from './class/LogginService.service';
 import { PersonsServices } from './class/persons.service';
 import { PersonsComponent } from './persons/persons.component';
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { PersonsComponent } from './persons/persons.component';
     PersonComponentComponent,
     FormComponent,
     PersonsComponent,
+    ErrorComponent,
   ],
   imports: [
     BrowserModule, FormsModule, AppRoutingModule
