@@ -46,5 +46,15 @@ export class PersonsServices {
 
   deletePerson(index: number): void {
     this.persons.splice(this.index, 1);
+    this.dataService.deletePerson(index);
+    // come back to save the array to regenerate de indexes.
+
+    this.modifyPersons();
+  }
+
+  modifyPersons(): void {
+    if (this.persons !== null) {
+      this.dataService.savePersons(this.persons);
+    }
   }
 }

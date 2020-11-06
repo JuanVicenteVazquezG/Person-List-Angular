@@ -32,4 +32,13 @@ export class DataService {
         (error) => console.log(`Data was not update because ${error}`)
       );
   }
+
+  deletePerson(index: number): void{
+    this.httpClient
+    .delete(`${environment.firebaseUrl.slice(0, -5)}/${index}.json`)
+    .subscribe(
+      (response) => console.log(` data ${response} was delete!`),
+      (error) => console.log(`Data was not delete because ${error}`)
+    );
+  }
 }
