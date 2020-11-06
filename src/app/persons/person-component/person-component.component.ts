@@ -12,7 +12,7 @@ export class PersonComponentComponent {
   @Input() index: number;
 
   constructor(private personsServices: PersonsServices) {
-  this.personsServices.greet.subscribe(this.showAlert);
+  // this.personsServices.greet.subscribe(this.showAlert);
   }
 
   greetingEmit(): void{

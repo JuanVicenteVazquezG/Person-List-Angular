@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebaseUrl: 'https://persons-list-9b77f.firebaseio.com/datos.json',
 };
 
 /*
