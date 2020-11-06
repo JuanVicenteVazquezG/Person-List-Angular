@@ -13,6 +13,7 @@ import { PersonsServices } from './persons/persons.service';
 import { PersonsComponent } from './persons/persons.component';
 import { ErrorComponent } from './error/error.component';
 import { DataService } from './data.service';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { DataService } from './data.service';
     FormComponent,
     PersonsComponent,
     ErrorComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule, FormsModule, AppRoutingModule,  HttpClientModule
