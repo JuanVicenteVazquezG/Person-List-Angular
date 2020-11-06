@@ -1,3 +1,4 @@
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -8,9 +9,10 @@ import { AppComponent } from './app.component';
 import { PersonComponentComponent } from './persons/person-component/person-component.component';
 import { FormComponent } from './persons/form/form.component';
 import { LogginService } from './class/LogginService.service';
-import { PersonsServices } from './class/persons.service';
+import { PersonsServices } from './persons/persons.service';
 import { PersonsComponent } from './persons/persons.component';
 import { ErrorComponent } from './error/error.component';
+import { DataService } from './data.service';
 
 @NgModule({
   declarations: [
@@ -21,9 +23,9 @@ import { ErrorComponent } from './error/error.component';
     ErrorComponent,
   ],
   imports: [
-    BrowserModule, FormsModule, AppRoutingModule
+    BrowserModule, FormsModule, AppRoutingModule,  HttpClientModule
   ],
-  providers: [LogginService, PersonsServices],
+  providers: [LogginService, PersonsServices, DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

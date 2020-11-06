@@ -1,13 +1,16 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { Person } from '../class/person.model';
-import { LogginService } from './LogginService.service';
+import { Person } from '../persons/person-component/person.model';
+import { LogginService } from '../class/LogginService.service';
+import { DataService } from '../data.service';
+
 @Injectable()
 export class PersonsServices {
   [x: string]: any;
   public persons: Array<Person>;
   public greet: EventEmitter<number>;
 
-  constructor(private logginService: LogginService) {
+  constructor(private logginService: LogginService,
+              private dataService: DataService) {
     this.persons = [
       new Person({ name: 'Juan', surname: 'Vazquez Lopez' }),
       new Person({ name: 'Laura', surname: 'Perez' })
@@ -20,6 +23,7 @@ export class PersonsServices {
   addPerson(person: Person): void {
     this.logginService.sendMessageToConsole(`Added a person ${person.human.name}`);
     this.persons.push(person);
+    this.dataService.savePersons(this.persons);
   }
 
   findPerson(index: number): Person {
