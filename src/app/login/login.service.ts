@@ -23,4 +23,21 @@ export class LoginService {
   getIdToken(): string {
     return this.token;
   }
+
+  isAutenticated(): boolean {
+    return this.token != null;
+  }
+
+  logout(): void {
+    firebase
+      .auth()
+      .signOut()
+      .then((): void => {
+        this.token = null;
+        this.router.navigate(['login']);
+      })
+      .catch((error): void => {
+        console.log(error);
+      });
+  }
 }

@@ -3,6 +3,7 @@ import { Person } from './person-component/person.model';
 import { LogginService } from '../class/LogginService.service';
 import { PersonsServices } from './persons.service';
 import { Router } from '@angular/router';
+import { LoginService } from '../login/login.service';
 
 @Component({
   selector: 'app-persons',
@@ -13,8 +14,13 @@ export class PersonsComponent implements OnInit {
 
   constructor(
     private personsService: PersonsServices,
-    private router: Router
-  ) {}
+    private router: Router,
+    private loginService: LoginService
+  ) {
+    // if (!this.loginService.getIdToken()) {
+    //   this.router.navigate(['/login']);
+    // }
+  }
 
   ngOnInit(): void {
     this.personsService.getPersons().subscribe(
@@ -22,7 +28,7 @@ export class PersonsComponent implements OnInit {
         this.persons = persons;
         this.personsService.setPersons(this.persons);
       },
-      (error) => console.log(`Error loading ${error}. `),
+      (error) => console.log(`Error loading ${error}. `)
     );
   }
 
