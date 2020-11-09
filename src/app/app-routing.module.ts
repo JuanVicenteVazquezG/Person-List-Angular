@@ -4,12 +4,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { ErrorComponent } from './error/error.component';
 import { FormComponent } from './persons/form/form.component';
 import { PersonsComponent } from './persons/persons.component';
+import { LoginGuardService } from './login/login-guard.service';
 
 const routes: Routes = [
-  { path: '', component: PersonsComponent },
+  { path: '', component: PersonsComponent, canActivate: [LoginGuardService] },
   {
     path: 'persons',
-    component: PersonsComponent,
+    component: PersonsComponent, canActivate: [LoginGuardService],
     children: [
       { path: 'add', component: FormComponent },
       { path: ':id', component: FormComponent },
